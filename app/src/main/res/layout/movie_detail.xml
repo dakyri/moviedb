@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="movie" type="com.mayaswell.moviedb.MovieDbAPI.Movie"/>
+    </data>
+    <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/listItemMainPadding"
+                android:layout_margin="@dimen/listItemMainMargin"
+                android:background="@drawable/list_item_bg"
+                android:id="@+id/movieItem">
+
+        <ImageView
+            android:layout_width="@dimen/imageWidth"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginRight="@dimen/listItemTextMargin"
+            android:adjustViewBounds="true"
+            app:imageUrl="@{movie.posterPath}"
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/imageView"
+            android:id="@+id/titleText"
+            android:text="@{movie.title}"
+            style="@style/MovieTitleText"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_below="@+id/titleText"
+            android:layout_toRightOf="@+id/imageView"
+            android:id="@+id/genreText"
+            app:moziGenreList="@{movie.genreIds}"
+            style="@style/MovieSubheadingText"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:id="@+id/yearText"
+            android:layout_below="@+id/genreText"
+            android:layout_toRightOf="@+id/imageView"
+            android:text='@{"Released "+movie.releaseDate}'
+            style="@style/MovieSubheadingDateText"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:id="@+id/ratingText"
+            android:layout_below="@+id/yearText"
+            android:layout_toRightOf="@+id/imageView"
+            android:layout_marginRight="@dimen/listItemTextMargin"
+            android:text='@{"Rating "+String.format("%.1f",movie.voteAverage)}'
+            style="@style/MovieRatingText"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:layout_marginRight="@dimen/listItemTextMargin"
+            android:id="@+id/descriptionText"
+            android:layout_below="@+id/ratingText"
+            android:layout_toRightOf="@+id/imageView"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:text="@{movie.overview}"
+            style="@style/MovieDescriptionText"
+            />
+    </RelativeLayout>
+</layout>
