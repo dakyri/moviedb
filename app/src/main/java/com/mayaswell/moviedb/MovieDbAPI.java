@@ -345,11 +345,9 @@ public class MovieDbAPI {
 	public Observable<TVShowSet> searchTVShows(int page, String query) {
 		return getTVShows(searchRequest(page, "tv", query));
 	}
-
 	public Observable<TVShowSet> getTVShows(int page, String ... mPath) {
 		return getTVShows(fetchRequest(page, "tv", mPath));
 	}
-
 	public Observable<TVShowSet> getTVShows(Request okRequest) {
 		Observable<Response> observable = createObservable(okRequest);
 		return observable
@@ -365,12 +363,8 @@ public class MovieDbAPI {
 				.observeOn(AndroidSchedulers.mainThread());
 	}
 
-	public Observable<PersonSet> searchPeople(int page, String query) {
-		return getPeople(searchRequest(page, "person", query));
-	}
-	public Observable<PersonSet> getPeople(int page, String ... mPath) {
-		return getPeople(fetchRequest(page, "person", mPath));
-	}
+	public Observable<PersonSet> searchPeople(int page, String query) { return getPeople(searchRequest(page, "person", query)); }
+	public Observable<PersonSet> getPeople(int page, String ... mPath) { return getPeople(fetchRequest(page, "person", mPath)); }
 	public Observable<PersonSet> getPeople(Request okRequest) {
 		Observable<Response> observable = createObservable(okRequest);
 		return observable
@@ -405,15 +399,12 @@ public class MovieDbAPI {
 	public Request fetchRequest(String prefix, String [] paths) {
 		return fetchRequest(-1, prefix, paths);
 	}
-
 	public Request fetchRequest(String [] paths) {
 		return fetchRequest(-1, null, paths);
 	}
-
 	public Request fetchRequest(String prefix) {
 		return fetchRequest(-1, prefix, null);
 	}
-
 	public Request fetchRequest(int page, String prefix, String [] paths) {
 		HttpUrl okurl = HttpUrl.parse(url);
 		if (okurl == null) {
